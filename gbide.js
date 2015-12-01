@@ -25,9 +25,8 @@ function toUint8Array(str) {
   })
 }
 
-function compile() {
-  const sourceText = find('source-text')
-  toUint8Array(sourceText.value).then(input => {
+function compile(source) {
+  toUint8Array(source).then(input => {
     rgbasm(input, (result)=> {
       console.log(result)
     })
@@ -44,7 +43,7 @@ function start() {
   // set event
   const compileButton = find('compile-button')
   compileButton.addEventListener('click', e => {
-    compile()
+    compile(sourceText.value)
   })
 }
 
