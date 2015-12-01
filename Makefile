@@ -72,7 +72,7 @@ public: index.html gbide.js rgbasm.js
 
 rgbasm.js: rgbasm.bc rgbasm/rgbasm_pre.js rgbasm/rgbasm_header.js rgbasm/rgbasm_footer.js
 	emcc ${REALCFLAGS} -o $@_raw.js rgbasm.bc --pre-js rgbasm/rgbasm_pre.js --preload-file gblib
-	cat rgbasm/rgbasm_header.js $@/rgbasm/rgbasm_raw.js rgbasm/rgbasm/rgbasm_footer.js > $@
+	cat rgbasm/rgbasm_header.js $@_raw.js rgbasm/rgbasm_footer.js > $@
 
 rgblink.js: rgblink.bc
 	emcc ${REALCFLAGS} -o $@ rgblink.bc
