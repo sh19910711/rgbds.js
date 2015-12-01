@@ -70,9 +70,9 @@ public: index.html gbide.js rgbasm.js
 	cp hello.asm public/
 	cp rgbasm.js_raw.data public/
 
-rgbasm.js: rgbasm.bc rgbasm_pre.js rgbasm_header.js rgbasm_footer.js
-	emcc ${REALCFLAGS} -o $@_raw.js rgbasm.bc --pre-js rgbasm_pre.js --preload-file gblib
-	cat rgbasm_header.js $@_raw.js rgbasm_footer.js > $@
+rgbasm.js: rgbasm.bc rgbasm/rgbasm_pre.js rgbasm/rgbasm_header.js rgbasm/rgbasm_footer.js
+	emcc ${REALCFLAGS} -o $@_raw.js rgbasm.bc --pre-js rgbasm/rgbasm_pre.js --preload-file gblib
+	cat rgbasm/rgbasm_header.js $@/rgbasm/rgbasm_raw.js rgbasm/rgbasm/rgbasm_footer.js > $@
 
 rgblink.js: rgblink.bc
 	emcc ${REALCFLAGS} -o $@ rgblink.bc
