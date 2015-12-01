@@ -59,9 +59,4 @@ extern void yyunputbytes(ULONG count);
 
 extern YY_BUFFER_STATE pCurrentBuffer;
 
-#ifdef __GNUC__
-extern void strupr(char *s);
-extern void strlwr(char *s);
-#endif
-
 #endif

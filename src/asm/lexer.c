@@ -39,25 +39,6 @@ ULONG tFloatingChars[256];
 ULONG nFloating;
 enum eLexerState lexerstate = LEX_STATE_NORMAL;
 
-#ifdef __GNUC__
-void 
-strupr(char *s)
-{
-	while (*s) {
-		*s = toupper(*s);
-		s += 1;
-	}
-}
-
-void 
-strlwr(char *s)
-{
-	while (*s) {
-		*s = tolower(*s);
-		s += 1;
-	}
-}
-#endif
 void 
 yyskipbytes(ULONG count)
 {
