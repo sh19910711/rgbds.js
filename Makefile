@@ -62,8 +62,17 @@ install: all
 	$Qinstall -m 444 src/fix/rgbfix.1 ${MANPREFIX}/man1/rgbfix.1
 	$Qinstall -m 444 src/link/rgblink.1 ${MANPREFIX}/man1/rgblink.1
 
-rgbasm.js: rgbasm.bc
-	emcc ${REALCFLAGS} -o $@ rgbasm.bc
+.PHONY: public
+public: index.html gbide.js rgbasm.js
+	cp rgbasm.js public/
+	cp index.html public/
+	cp gbide.js public/
+	cp hello.asm public/
+	cp rgbasm.js_raw.data public/
+
+rgbasm.js: rgbasm.bc rgbasm_pre.js rgbasm_header.js rgbasm_footer.js
+	emcc ${REALCFLAGS} -o $@_raw.js rgbasm.bc --pre-js rgbasm_pre.js --preload-file gblib
+	cat rgbasm_header.js $@_raw.js rgbasm_footer.js > $@
 
 rgblink.js: rgblink.bc
 	emcc ${REALCFLAGS} -o $@ rgblink.bc
