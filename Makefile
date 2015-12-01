@@ -42,7 +42,7 @@ rgbfix_obj = \
 	src/fix/main.o \
 	src/extern/err.o
 
-all: rgbasm rgblink rgbfix
+all: rgbasm.js rgblink.js rgbfix.js
 
 clean:
 	$Qrm -rf rgbds.html
@@ -62,13 +62,22 @@ install: all
 	$Qinstall -m 444 src/fix/rgbfix.1 ${MANPREFIX}/man1/rgbfix.1
 	$Qinstall -m 444 src/link/rgblink.1 ${MANPREFIX}/man1/rgblink.1
 
-rgbasm: ${rgbasm_obj}
-	$Q${CC} ${REALCFLAGS} -o $@ ${rgbasm_obj} -lm
+rgbasm.js: rgbasm.bc
+	emcc ${REALCFLAGS} -o $@ rgbasm.bc
 
-rgblink: ${rgblink_obj}
+rgblink.js: rgblink.bc
+	emcc ${REALCFLAGS} -o $@ rgblink.bc
+
+rgbfix.js: rgbfix.bc
+	emcc ${REALCFLAGS} -o $@ rgbfix.bc
+
+rgbasm.bc: ${rgbasm_obj}
+	$Q${CC} ${REALCFLAGS} -o $@ ${rgbasm_obj}
+
+rgblink.bc: ${rgblink_obj}
 	$Q${CC} ${REALCFLAGS} -o $@ ${rgblink_obj}
 
-rgbfix: ${rgbfix_obj}
+rgbfix.bc: ${rgbfix_obj}
 	$Q${CC} ${REALCFLAGS} -o $@ ${rgbfix_obj}
 
 .y.c:
