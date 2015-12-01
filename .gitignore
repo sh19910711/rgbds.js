@@ -2,3 +2,5 @@
 *.js.map
 *.bc
 *.o
+public/
+*.data
