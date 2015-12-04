@@ -1,19 +1,15 @@
 function rgblink(options, callback) {
   var Module = {}
 
+  Object.assign(Module, options)
+
   Object.assign(Module, {
     canvas: document.createElement('canvas'),
     callback: callback,
-    arguments: ['-ooutput.gb', 'input.obj'],
+    arguments: ['-ooutput.obj', 'halt.asm'],
 
     preRun: _=> {
-      FS.createDataFile(
-        '/',
-        'input.obj',
-        Module['input'],
-        true,
-        false
-      )
+      Object.keys(Module.files).forEach( filename => createProjectFile(filename) )
     },
 
     postRun: _=> {
@@ -24,7 +20,16 @@ function rgblink(options, callback) {
       FS.read(stream, buf, 0, length, 0)
       FS.close(stream)
       callback(buf)
-    }
-  });
+    },
+  })
 
-  Object.assign(Module, options)
+  function createProjectFile(filename) {
+    FS.createDataFile(
+      '/',
+      filename,
+      Module.files[filename],
+      true,
+      false
+    )
+  }
+

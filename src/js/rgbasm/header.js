@@ -6,10 +6,12 @@ function rgbasm(options, callback) {
   Object.assign(Module, {
     canvas: document.createElement('canvas'),
     callback: callback,
-    arguments: ['-ooutput.obj', 'halt.asm'],
+    arguments: ['-ooutput.obj', Module.entry],
 
     preRun: _=> {
-      Object.keys(Module.files).forEach( filename => createProjectFile(filename) )
+      Object.keys(Module.files).forEach(function(filename) {
+        createProjectFile(filename)
+      })
     },
 
     postRun: _=> {
