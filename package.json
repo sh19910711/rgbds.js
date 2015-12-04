@@ -1,0 +1,33 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "----------------   RGBDS README ----------------",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "karma start",
+    "karma/init": "karma init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sh19910711/rgbds.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sh19910711/rgbds.js/issues"
+  },
+  "homepage": "https://github.com/sh19910711/rgbds.js#readme",
+  "devDependencies": {
+    "babel": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.15",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6"
+  }
+}
