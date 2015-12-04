@@ -20,7 +20,8 @@ module.exports = function(config) {
     files: [
       'dist/rgbds.js',
       'spec/*_spec.js',
-      'spec/fake/*.asm',
+      'spec/fake/**/*.asm',
+      'spec/fake/**/*.inc',
     ],
 
 
@@ -33,7 +34,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       '*.js': ['babel'],
-      '**/*.asm': ['html2js']
+      '**/*.asm': ['html2js'],
+      '**/*.inc': ['html2js']
     },
 
     babelPreprocessor: {
