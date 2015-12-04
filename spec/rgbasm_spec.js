@@ -4,10 +4,10 @@ describe('rgbasm()', () => {
   })
 
   it('halt', (done) => {
-    window.Module = {
+    const opts = {
       input: __html__['spec/rgbasm/hello.asm']
     }
-    rgbasm(Module['input'], ret => {
+    rgbasm(opts, ret => {
       str = String.fromCharCode.apply(null, ret.slice(0, 4))
       expect(str).toBe('RGB2')
       done()

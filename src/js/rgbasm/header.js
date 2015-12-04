@@ -1,9 +1,6 @@
-function rgbasm(opts, callback) {
-  var GlobalModule = window.Module || {} // to override
-
+function rgbasm(options, callback) {
   var Module = {}
   Object.assign(Module, {
-    input: opts.input,
     canvas: document.createElement('canvas'),
     callback: callback,
     arguments: ['-ooutput.obj', 'input.asm'],
@@ -29,4 +26,4 @@ function rgbasm(opts, callback) {
     }
   });
 
-  Object.assign(Module, GlobalModule)
+  Object.assign(Module, options)
