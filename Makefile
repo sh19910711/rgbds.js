@@ -71,9 +71,9 @@ install: all
 	$Qinstall -m 444 src/fix/rgbfix.1 ${MANPREFIX}/man1/rgbfix.1
 	$Qinstall -m 444 src/link/rgblink.1 ${MANPREFIX}/man1/rgblink.1
 
-${rgbds_js}: %.js: %.bc
+${rgbds_js}: tmp/%.js: src/js/%/header.js src/js/%/footer.js tmp/%.bc
 	$(eval name := $(patsubst tmp/%.js,%,$@))
-	${CC} --memory-init-file 0 -O2 -o $@.main.js --pre-js src/js/${name}/pre.js $^
+	${CC} --memory-init-file 0 -o $@.main.js tmp/${name}.bc
 	cat src/js/${name}/header.js > $@
 	cat $@.main.js >> $@
 	cat src/js/${name}/footer.js >> $@
@@ -83,7 +83,9 @@ mkdirs:
 	mkdir -p dist
 
 tmp/rgbasm.bc: ${rgbasm_obj}
-	${CC} ${REALCFLAGS} -o $@ $^
+	$(eval name := $(patsubst tmp/%.bc,%,$@))
+	${CC} ${REALCFLAGS} -o $@ ${rgbasm_obj}
+
 tmp/rgblink.bc: ${rgblink_obj}
 	${CC} ${REALCFLAGS} -o $@ $^
 tmp/rgbfix.bc: ${rgbfix_obj}
