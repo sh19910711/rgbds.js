@@ -20,7 +20,7 @@ module.exports = function(config) {
     files: [
       'dist/rgbds.js',
       'spec/*_spec.js',
-      'spec/rgbasm/*',
+      'spec/rgbasm/*.asm',
     ],
 
 
