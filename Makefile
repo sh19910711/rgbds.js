@@ -47,7 +47,11 @@ rgbds_js = \
 	tmp/rgblink.js \
 	tmp/rgbfix.js
 
-all: mktmp ${rgbds_js}
+all: mkdirs dist/rgbds.js
+
+dist/rgbds.js: ${rgbds_js}
+	cat src/js/use_strict.js > $@
+	cat ${rgbds_js} >> $@
 
 clean:
 	$Qrm -rf rgbds.html
@@ -68,10 +72,15 @@ install: all
 	$Qinstall -m 444 src/link/rgblink.1 ${MANPREFIX}/man1/rgblink.1
 
 ${rgbds_js}: %.js: %.bc
-	${CC} -O2 -o $@ $^
+	$(eval name := $(patsubst tmp/%.js,%,$@))
+	${CC} --memory-init-file 0 -O2 -o $@.main.js --pre-js src/js/${name}/pre.js $^
+	cat src/js/${name}/header.js > $@
+	cat $@.main.js >> $@
+	cat src/js/${name}/footer.js >> $@
 
-mktmp:
+mkdirs:
 	mkdir -p tmp
+	mkdir -p dist
 
 tmp/rgbasm.bc: ${rgbasm_obj}
 	${CC} ${REALCFLAGS} -o $@ $^
