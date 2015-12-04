@@ -4,13 +4,27 @@ describe('rgbasm()', () => {
   })
 
   it('halt', (done) => {
-    const opts = {
-      input: __html__['spec/rgbasm/hello.asm']
+    function toUint8Array(str) {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader()
+        fileReader.onloadend = _=> {
+          resolve(new Uint8Array(fileReader.result))
+        }
+        fileReader.readAsArrayBuffer(new Blob([str]))
+      })
     }
-    rgbasm(opts, ret => {
-      str = String.fromCharCode.apply(null, ret.slice(0, 4))
-      expect(str).toBe('RGB2')
-      done()
+    toUint8Array(__html__['spec/fake/halt.asm']).then(bytes => {
+      const options = {
+        entry: 'halt.asm',
+        files: {
+          'halt.asm': bytes,
+        }
+      }
+      rgbasm(options, (ret) => {
+        const str = String.fromCharCode.apply(null, ret.slice(0, 4))
+        expect(str).toBe('RGB2')
+        done()
+      })
     })
   })
 })
