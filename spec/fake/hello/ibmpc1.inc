@@ -23,14 +23,14 @@ IBMPC1_INC  SET  1
 rev_Check_ibmpc1_inc: MACRO
 ;NOTE: REVISION NUMBER CHANGES MUST BE ADDED
 ;TO SECOND PARAMETER IN FOLLOWING LINE.
-        IF      \1 > 1.2      ; <--- PUT REVISION NUMBER HERE
-        WARN    "Version \1 or later of 'ibmpc1.inc' is required."
+        IF      1 > 1.2      ; <--- PUT REVISION NUMBER HERE
+        WARN    "Version 1 or later of 'ibmpc1.inc' is required."
         ENDC
         ENDM
 
 chr_IBMPC1: MACRO
 
-        IF      (\1 == 0) || (\2 == 0) || (\1 > \2) || (\2 > 8)
+        IF      (1 == 0) || (2 == 0) || (1 > 2) || (2 > 8)
         FAIL    "Font range values are invalid"
         ENDC
 
@@ -40,7 +40,7 @@ chr_IBMPC1: MACRO
 
 ; Characters $00 - $1f
 
-        IF      (\1 == 1)
+        IF      (1 == 1)
 
         DB      %.XXXXXX.  ;Use to be a space ?????
         DB      %.X....X.
@@ -334,7 +334,7 @@ chr_IBMPC1: MACRO
 
 ; Characters $20 - $3f
 
-        IF      (\1 < 3) && (\2 > 1)
+        IF      (1 < 3) && (2 > 1)
 
         DB      %........
         DB      %........
@@ -628,7 +628,7 @@ chr_IBMPC1: MACRO
 
 ; Characters $40 - $5f
 
-        IF      (\1 < 4) && (\2 > 2)
+        IF      (1 < 4) && (2 > 2)
 
         DB      %.XXXXX..
         DB      %XX...XX.
@@ -922,7 +922,7 @@ chr_IBMPC1: MACRO
 
 ; Characters $60 - $7f
 
-        IF      (\1 < 5) && (\2 > 3)
+        IF      (1 < 5) && (2 > 3)
 
         DB      %..XX....
         DB      %..XX....
@@ -1216,7 +1216,7 @@ chr_IBMPC1: MACRO
 
 ; Characters $80 - $9f
 
-        IF      (\1 < 6) && (\2 > 4)
+        IF      (1 < 6) && (2 > 4)
 
         DB      %..XXXX..
         DB      %.XX..XX.
@@ -1510,7 +1510,7 @@ chr_IBMPC1: MACRO
 
 ; Characters $a0 - $bf
 
-        IF      (\1 < 7) && (\2 > 5)
+        IF      (1 < 7) && (2 > 5)
 
         DB      %....X...
         DB      %...X....
@@ -1804,7 +1804,7 @@ chr_IBMPC1: MACRO
 
 ; Characters $c0 - $df
 
-        IF      (\1 < 8) && (\2 > 6)
+        IF      (1 < 8) && (2 > 6)
 
         DB      %...X....
         DB      %...X....
@@ -2098,7 +2098,7 @@ chr_IBMPC1: MACRO
 
 ; Characters $e0 - $ff
 
-        IF      (\1 < 9) && (\2 > 7)
+        IF      (1 < 9) && (2 > 7)
 
         DB      %........
         DB      %........

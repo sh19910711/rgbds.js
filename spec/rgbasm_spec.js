@@ -4,16 +4,7 @@ describe('rgbasm()', () => {
   })
 
   it('halt', (done) => {
-    function toUint8Array(str) {
-      return new Promise((resolve, reject) => {
-        const fileReader = new FileReader()
-        fileReader.onloadend = _=> {
-          resolve(fileReader.result)
-        }
-        fileReader.readAsArrayBuffer(new Blob([str]))
-      })
-    }
-    toUint8Array(__html__['spec/fake/halt.asm']).then(bytes => {
+    toBuffer(__html__['spec/fake/halt.asm']).then(bytes => {
       const options = {
         entry: 'halt.asm',
         files: {
