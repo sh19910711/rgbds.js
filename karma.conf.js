@@ -18,6 +18,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'spec/spec_helper.js',
       'dist/rgbds.js',
       'spec/*_spec.js',
       'spec/fake/**/*.asm',
