@@ -74,7 +74,7 @@ install: all
 
 ${rgbds_js}: tmp/%.js: tmp/%.bc src/js/header.js.env src/js/footer.js.env
 	$(eval name := $(patsubst tmp/%.js,%,$@))
-	${CC} --memory-init-file 0 -o $@.main.js tmp/${name}.bc
+	${CC} -O2 --memory-init-file 0 -o $@.main.js tmp/${name}.bc
 	bash script/expand_env.bash src/js/header.js.env ${name} > $@
 	cat $@.main.js >> $@
 	bash script/expand_env.bash src/js/footer.js.env ${name} >> $@
