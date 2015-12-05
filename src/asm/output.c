@@ -201,7 +201,7 @@ writepatch(struct Patch * pPatch, FILE * f)
 void 
 writesection(struct Section * pSect, FILE * f)
 {
-	//printf("SECTION: %s, ID: %d\n", pSect->pzName, getsectid(pSect));
+	// printf("SECTION: %s, ID: %d\n", pSect->pzName, getsectid(pSect));
 
 	fputlong(pSect->nPC, f);
 	fputc(pSect->nType, f);

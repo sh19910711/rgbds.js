@@ -1,7 +1,5 @@
 describe('rgblink()', () => {
-  it('should be a function', () => {
-    expect(rgblink).toBeFunction()
-  })
+  it('should be a function', () => expect(rgblink).toBeFunction())
 
   it('hello', (done) => {
     const sources = [
@@ -17,8 +15,7 @@ describe('rgblink()', () => {
       // generate project
       const asmOptions = {
         entry: 'hello.asm',
-        files: {},
-        verbose: true
+        files: {}
       }
       sources.forEach((source, k) => {
         asmOptions.files[getFilename(source)] = codes[k]
